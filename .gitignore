@@ -1,0 +1,28 @@
+# Node.js specific files
+node_modules/
+npm-debug.log*
+yarn-error.log*
+
+# OS specific files
+.DS_Store
+Thumbs.db
+
+# Logs and Output
+logs/
+*.log
+*.err
+
+# Test results
+coverage/
+.nyc_output/
+
+# IDE specific files
+.idea/
+.vscode/
+
+# Build artifacts
+build/
+dist/
+
+# Local configuration
+.env*
