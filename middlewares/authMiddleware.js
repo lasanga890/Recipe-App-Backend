@@ -14,20 +14,18 @@ export const hashPassword = async (password) => {
 export const comparePassword = async (password, hashedPassword) => {
   return bcrypt.compare(password, hashedPassword);
 };
-export const requireSignIn = async (req, res, next) => {
+
+export const authenticateUser = (req, res, next) => {
+  const token = req.header("Authorization")?.replace("Bearer ", "");
+  if (!token) {
+    return res.status(401).json({ message: "No token, authorization denied" });
+  }
+
   try {
-    const decode = JWT.verify(
-      req.headers.authorization,
-      process.env.JWT_SECRET
-    );
-    req.user = decode;
+    const decoded = JWT.verify(token, process.env.JWT_SECRET);
+    req.user = decoded; // Attach the decoded user info to req.user
     next();
   } catch (error) {
-    console.log(error);
-    res.status(500).send({
-      success: false,
-      message: "Invalid Token",
-      error,
-    });
+    res.status(401).json({ message: "Token is not valid" });
   }
 };

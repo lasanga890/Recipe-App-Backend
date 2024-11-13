@@ -77,6 +77,7 @@ export const registerController = async (req, res) => {
     if (!conformPassword) {
       return res.send({ message: "Conform Password is Required" });
     }
+
     //check user
     const exisitingUser = await userModel.findOne({ email });
     //exisiting user

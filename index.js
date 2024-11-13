@@ -4,6 +4,8 @@ import ConnectDB from "./config/db.js";
 import dotenv from "dotenv";
 import cors from "cors";
 import authRoute from "./routes/authRoute.js";
+import recipeRoute from "./routes/recipeRoute.js";
+import favRoute from "./routes/favRoute.js";
 
 dotenv.config();
 
@@ -20,6 +22,8 @@ app.use(morgan("dev"));
 
 // Routes
 app.use("/api/user", authRoute);
+app.use("/api/recipes", recipeRoute);
+app.use("/api/favourite", favRoute);
 // Port configuration
 const PORT = process.env.PORT || 8000;
 
