@@ -23,7 +23,7 @@ export const authenticateUser = (req, res, next) => {
 
   try {
     const decoded = JWT.verify(token, process.env.JWT_SECRET);
-    req.user = decoded; // Attach the decoded user info to req.user
+    req.user = decoded;
     next();
   } catch (error) {
     res.status(401).json({ message: "Token is not valid" });

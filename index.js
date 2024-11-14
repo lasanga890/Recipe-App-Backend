@@ -20,14 +20,12 @@ app.use(
 app.use(express.json());
 app.use(morgan("dev"));
 
-// Routes
 app.use("/api/user", authRoute);
 app.use("/api/recipes", recipeRoute);
 app.use("/api/favourite", favRoute);
-// Port configuration
+
 const PORT = process.env.PORT || 8000;
 
-// Start the server
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });

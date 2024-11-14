@@ -1,15 +1,13 @@
 import axios from "axios";
 import Favorite from "../models/favouriteModel.js";
 
-const basUrl = process.env.API_URL;
+const baseUrl = process.env.API_URL;
 
 export const getFavorite = async (req, res) => {
   const { _id } = req.user;
 
   try {
     const favorites = await Favorite.find({ userId: _id });
-    console.log(favorites);
-    // Check if favorites are found
     if (!favorites || favorites.length === 0) {
       return res
         .status(404)
@@ -18,7 +16,7 @@ export const getFavorite = async (req, res) => {
 
     const favRecipe = await Promise.all(
       favorites.map(async (fav) => {
-        const meal = await axios.get(`${basUrl}/lookup.php?i=${fav.recipeId}`);
+        const meal = await axios.get(`${baseUrl}/lookup.php?i=${fav.recipeId}`);
         return meal.data.meals ? meal.data.meals : null;
       })
     );
