@@ -1,5 +1,0 @@
-[build]
-  functions = "netlify/functions"
-
-[dev]
-  command = "npm run start" # If you have a start command
